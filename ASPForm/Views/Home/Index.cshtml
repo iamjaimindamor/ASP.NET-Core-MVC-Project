@@ -1,0 +1,49 @@
+﻿@model ABHAModel;
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4"><b>ABHA DATA COLLECTION</b></h1>
+   
+</div>
+<div class="">
+  <div class="container">
+        <div class="row justify-content-center">
+        <div class="col-sm-6">
+            <form class="d-grid mx-auto" asp-action="Index" asp-controller="Home" method="post">
+                    <label asp-for="ABHA_Number"><b>ABHA Number</b></label>
+                <input asp-for="ABHA_Number" type="text" class="form-control" placeholder="Enter ABHA Number"/>
+                <br />
+                    <label asp-for="ABHA_ID"><b>ABHA Address</b></label>
+                <input asp-for="ABHA_ID" class="form-control" placeholder="Enter ABHA Address"/>
+                <br />
+                    <label asp-for="Full_Name"><b>Full Name</b></label>
+                <input asp-for="Full_Name" class="form-control" placeholder="Enter Full Name"/>
+                <br />
+                 <div>
+
+                        <label label asp-for="Gender"><b>Gender</b></label>
+
+                     <div>
+                         <label asp-for="Gender" class="form-check-label"> Male : <input asp-for="Gender" type="radio" value="Male" class="form-check-inline" /></label>
+                            <label asp-for="Gender" class="form-check-label"> Female : <input asp-for="Gender" type="radio" value="Female" class="form-check-inline" /></label>
+                     </div>
+                    <br />
+                 </div>
+                    <label asp-for="DateOfBirth"><b>Date Of Birth</b></label>
+                    <input asp-for="DateOfBirth" type="date" class="form-control" placeholder="Date Of Birth" />
+                <br />
+                    <label asp-for="Phone_Number"><b>Contact No:</b></label>
+                <input asp-for="Phone_Number" type="text" class="form-control" placeholder="Enter Phone Number"/>
+                <br />
+                <input type="submit" value="submit" class="btn btn-outline-primary btn-block" />
+                <br />
+            </form>
+
+        </div>
+    </div>
+
+  </div>
+</div>

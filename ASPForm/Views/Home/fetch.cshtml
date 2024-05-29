@@ -1,0 +1,28 @@
+﻿@model FetchModel;
+
+<h1>Get Details From ABHA Holders</h1>
+
+<form asp-action="fetch" method ="post">
+  @*   <select asp-for="Id" asp-items="@(new SelectList(Model.abha_wale,"Value","Text"))" class="form-control">
+    </select> *@
+    @Html.DropDownListFor(x => x.Id, new SelectList(Model.abha_wale, "Value", "Text"),new{@class="form-control"})
+    <br />
+    <input type="submit" value="Fetch Details" class="btn btn-outline-primary" />
+       
+</form>
+<br />
+    @{
+        if (TempData["abhaHai"] != null)
+        {
+            <h3><b><i><u>ABHA Holder's Details</u></i></b></h3>
+           <ol>
+                <li><p><b>ABHA ID : </b>@TempData["abhaID"]</p></li>
+                <li><p><b>Name : </b>@TempData["abhaName"]</p></li>
+                <li> <p><b>Date Of Birth : </b>@ViewBag.abhaDOB </p></li>
+            </ol>
+        }
+        else if(ViewBag.Message != null)
+        {
+            <p style="color:red">@ViewBag.Message</p>
+        }
+    }
