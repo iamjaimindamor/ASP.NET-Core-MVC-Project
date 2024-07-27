@@ -6,8 +6,6 @@ using System.Diagnostics;
 
 namespace ASPForm.Controllers
 {
-    [Route("api/[controller")]
-    [ApiController]
     public class HomeController : Controller
     {
         private readonly AbhaDBContext abha;
@@ -17,6 +15,7 @@ namespace ASPForm.Controllers
             this.abha = abha;
         }
 
+     
         public IActionResult Index()
         {
             return View();
@@ -38,6 +37,21 @@ namespace ASPForm.Controllers
             return View(a);
         }
 
+        [HttpGet("FindUser")]
+        public async Task<IActionResult> Details(int id)
+        {
+            var userdata = abha.abhaTab.FirstOrDefault(x => x.id == id);
+
+            if (userdata == null) { return NotFound(); }
+            else
+            {
+                var details = await abha.abhaTab.FindAsync(id);
+                return View(details);
+            }
+
+
+        }
+
         [HttpPost("FindUser")]
         public async Task<IActionResult> Details(int id, ABHAModel a)
         {
@@ -47,12 +61,13 @@ namespace ASPForm.Controllers
             else
             {
                 var details = await abha.abhaTab.FindAsync(id);
-                return Ok(details);
+                return View(details);
             }
 
 
         }
 
+        [HttpGet("UpdateDetails")]
         public async Task<IActionResult> Edits(int id)
         {
             var userdata = abha.abhaTab.FirstOrDefault(x => x.id == id);
@@ -82,6 +97,7 @@ namespace ASPForm.Controllers
 
         }
 
+        [HttpGet("Delete")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id != null)
@@ -117,7 +133,7 @@ namespace ASPForm.Controllers
         {
             var data = abha.abhaTab.ToList();
 
-            return Ok(data);
+            return View(data);
 
         }
         public IActionResult Privacy()
@@ -155,6 +171,7 @@ namespace ASPForm.Controllers
             return fetching;
         }
 
+        [HttpGet("List")]
         public IActionResult fetch()
 
         {
